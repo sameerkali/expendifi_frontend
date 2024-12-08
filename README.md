@@ -1,6 +1,6 @@
 # Project Structure
 
-This repository follows a scalable Next.js App Router structure, suitable for a partner-side application that includes public signup/login, protected dashboards, profile management, and ad management. It is designed with SEO in mind, using components, hooks, and libraries that ensure clean code organization and maintainability.
+This repository follows a scalable Next.js App Router structure, suitable for a partner-side application that includes public signup/login, protected dashboards, profile management, and ad management. It is designed with SEO and performance in mind, using components, hooks, and libraries that ensure clean code organization and maintainability.
 
 ```text
 project/
@@ -41,7 +41,7 @@ project/
 │  │  ├─ Modal.tsx
 │  │  ├─ LoadingSpinner.tsx
 │  ├─ forms/
-│  │  ├─ FormWrapper.tsx            // Generic form wrapper for styling and validation handling
+│  │  ├─ FormWrapper.tsx            // Generic form wrapper for styling and validation
 │  │  ├─ FormField.tsx              // Generic input with label, error display
 │  ├─ layout/
 │  │  ├─ Header.tsx
@@ -49,13 +49,16 @@ project/
 │  │  ├─ Sidebar.tsx                // If a sidebar is needed after login
 │
 ├─ lib/
-│  ├─ auth.ts                       // Next-Auth config and providers
-│  ├─ prisma.ts                     // Prisma client instance
+│  ├─ auth.ts                       // Next-Auth (or Auth.js) config and providers
 │  ├─ seo.ts                        // Default SEO configs with next-seo
 │  ├─ validations/                  // Zod schemas for validation
 │  │  ├─ userSchema.ts
 │  │  ├─ postSchema.ts
 │  │  ├─ profileSchema.ts
+│  ├─ api/                          // API helpers (e.g. axios instances, fetch wrappers)
+│  │  ├─ authAPI.ts                 // Auth-related API calls
+│  │  ├─ userAPI.ts                 // User/profile-related API calls
+│  │  ├─ adsAPI.ts                  // Ad-related API calls
 │
 ├─ hooks/
 │  ├─ useAuth.ts                    // Hook to get auth user
@@ -66,8 +69,6 @@ project/
 │  ├─ variables.css                 // CSS variables if needed
 │
 ├─ public/                           // Public assets (images, icons)
-├─ prisma/
-│  ├─ schema.prisma                 // Database schema
 │
 ├─ next-env.d.ts
 ├─ next.config.js
