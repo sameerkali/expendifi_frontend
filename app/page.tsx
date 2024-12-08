@@ -1,102 +1,117 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
+import { CaregorySubcategoryData } from "@/public/JSON_DATA/CaregorySubcategoryData";
+
+interface Option {
+  id: number;
+  name: string;
+  image: string;
+}
+
+interface Subcategory {
+  id: number;
+  name: string;
+  image: string;
+  options: Option[];
+}
+
+interface Category {
+  id: number;
+  name: string;
+  image: string;
+  subcategories: Subcategory[];
+}
+
+interface DataStructure {
+  mainCategories: Category[];
+}
 
 export default function Home() {
+  // Ensure the data matches the DataStructure interface
+  const data = CaregorySubcategoryData as DataStructure;
+
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null,
+  );
+
+  const handleCategoryClick = (category: Category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleBackClick = () => {
+    setSelectedCategory(null);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen p-8 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-gradient-to-r from-gray-100 to-blue-50">
+      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+        Expendifi Home Page
+      </h1>
+      {selectedCategory ? (
+        <div>
+          <button
+            onClick={handleBackClick}
+            className="mb-8 inline-flex items-center gap-2 bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition font-medium"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <span className="text-xl">&larr;</span>
+            <span>Back</span>
+          </button>
+          <h2 className="text-3xl font-semibold mb-4 text-gray-700">
+            {selectedCategory.name}
+          </h2>
+          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {selectedCategory.subcategories.map((subcat) => (
+              <div
+                key={subcat.id}
+                className="group relative flex flex-col items-center rounded-lg p-4 shadow-md hover:shadow-2xl border border-transparent hover:border-transparent transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer"
+                style={{
+                  background: "linear-gradient(135deg, #f5f7fa, #c3cfe2)",
+                }}
+              >
+                <div className="w-32 h-32 mb-4 relative overflow-hidden rounded-full shadow-lg">
+                  <Image
+                    src={subcat.image}
+                    alt={subcat.name}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110 rounded-full"
+                  />
+                </div>
+                <h3 className="text-xl font-medium text-center text-gray-800 transition-colors duration-300 group-hover:text-gray-900">
+                  {subcat.name}
+                </h3>
+                <div className="absolute inset-0 pointer-events-none rounded-lg group-hover:shadow-[0_0_15px_rgba(0,0,0,0.15)] transition-shadow duration-300" />
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ) : (
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {data.mainCategories.map((category) => (
+            <div
+              key={category.id}
+              onClick={() => handleCategoryClick(category)}
+              className="group relative flex flex-col items-center rounded-lg p-4 shadow-md hover:shadow-2xl border border-transparent hover:border-transparent transition-all duration-300 hover:scale-105 hover:-translate-y-1 cursor-pointer"
+              style={{
+                background: "linear-gradient(135deg, #f5f7fa, #c3cfe2)",
+              }}
+            >
+              <div className="w-32 h-32 mb-4 relative overflow-hidden rounded-full shadow-lg">
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110 rounded-full"
+                />
+              </div>
+              <h2 className="text-2xl font-semibold text-center text-gray-800 transition-colors duration-300 group-hover:text-gray-900">
+                {category.name}
+              </h2>
+              <div className="absolute inset-0 pointer-events-none rounded-lg group-hover:shadow-[0_0_15px_rgba(0,0,0,0.15)] transition-shadow duration-300" />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
