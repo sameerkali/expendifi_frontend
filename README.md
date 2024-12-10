@@ -1,6 +1,6 @@
 # Project Structure
 
-This repository follows a scalable Next.js App Router structure, suitable for a partner-side application that includes public signup/login, protected dashboards, profile management, and ad management. It is designed with SEO and performance in mind, using components, hooks, and libraries that ensure clean code organization and maintainability.
+This repository follows a scalable Next.js App Router structure, suitable for a partner-side application  that includes public signup/login, protected dashboards, profile management, and ad management. It is designed with SEO and performance in mind, using components, hooks, and libraries that ensure clean code organization and maintainability.
 
 ```text
 project/
