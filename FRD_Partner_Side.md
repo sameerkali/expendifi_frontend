@@ -85,7 +85,7 @@ The Partner Side module is designed to manage partners who provide ad spaces for
   2. Approve or reject based on platform guidelines.
   3. Notify partners of the decision via in-app notifications and WhatsApp.
 - **Edge Cases:**
-  - Rejected Ads: Partners can modify and re-upload without starting from scratch.
+  - Rejected Ads: Partners can modify and re-upload effected data only.
   - Delayed Approvals: Auto-approve ads after a set period if no action is taken by the admin.
 
 ---
@@ -126,6 +126,7 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 - **Features:**
   - Display detailed earnings breakdown (per ad type, size, and duration).
   - Show total revenue, pending payments, and completed bookings.
+  - All the invoices should downloadable.
   - Highlight service fee deductions and net payouts.
 - **Edge Cases:**
   - Payment Disputes: Allow partners to raise tickets for discrepancies. Admin resolves within 2-3 business days.
