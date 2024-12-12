@@ -26,11 +26,6 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 
 ##### **3.1.1 Registration Process**
 
-- **Partner Type:**
-  - Individual Partner
-
-##### **For Individual Partner:**
-
 - **Input Fields:**
   - Name
   - Email
@@ -67,15 +62,18 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 ##### **3.2.1 Ad Space Upload**
 
 - **Input Fields:**
-  - Ad Type (e.g., Vehicle Ads, Wall Ads).
-  - Subcategory (e.g., Full Wraps, Door Branding).
-  - Location (City, Locality, Venue).
-  - Pricing Details (Based on ad type, size, and duration).
-  - Availability (Real-time calendar for blackout dates).
-  - Visuals (High-quality images/videos of ad spaces).
+  - Photos (High-quality images of the ad space).
+  - Title (Short and descriptive).
+  - Description (Detailed explanation of the ad space).
+  - Location (City, Locality).
+  - Size (Dimensions in feet, e.g., [10] [20]).
+  - 1-Day Rate (24-hour rental rate).
+  - Landmark (Nearby identifiable landmark).
+  - Full Address (Complete address of the ad space).
+  - Keywords (Up to 5 relevant keywords for search optimization).
 - **Validation:**
-  - Ensure all fields are completed before submission.
-  - Check for duplicate ad spaces to prevent redundancy.
+  - Ensure all mandatory fields are completed before submission.
+  - Verify uploaded photos meet quality standards.
 - **Output:**
   - Save ad space details in the database.
   - Notify the admin for review and approval.
@@ -83,7 +81,7 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 ##### **3.2.2 Admin Approval**
 
 - **Steps:**
-  1. Admin verifies the uploaded ad space details and visuals.
+  1. Admin verifies the uploaded ad space details, photos, and description.
   2. Approve or reject based on platform guidelines.
   3. Notify partners of the decision via in-app notifications and WhatsApp.
 - **Edge Cases:**
@@ -101,7 +99,7 @@ The Partner Side module is designed to manage partners who provide ad spaces for
     - In-app notifications.
     - WhatsApp alerts with booking details (e.g., date, location, ad type).
 - **Details Shared with Partners:**
-  - Ad Type, Subcategory, Size, and Duration.
+  - Ad Type, Title, Size, and Duration.
   - Installation timeline and user requirements.
   - Booking amount and expected earnings.
 - **Edge Cases:**
