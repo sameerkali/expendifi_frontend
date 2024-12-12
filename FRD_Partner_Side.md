@@ -26,13 +26,20 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 
 ##### **3.1.1 Registration Process**
 
+- **Partner Type:**
+  - Individual Partner
+
+##### **For Individual Partner:**
+
 - **Input Fields:**
-  - Name, Business Name, Contact Information (Email and Phone).
-  - Preferred Ad Categories (e.g., Vehicle Ads, Wall Ads).
+  - Name
+  - Email
+  - Password
+  - Location
+  - Contact Number (Optional)
+  - Date of Birth (DOB)
 - **Document Upload:**
-  - Proof of Ownership: Vehicle registration documents, property deeds, rental agreements.
-  - Government ID: Aadhaar, PAN, GST registration (if applicable).
-  - Business License (if applicable).
+  - PAN Card
 - **Output:**
   - Store partner details securely in the database.
   - Assign a unique Partner ID upon successful registration.
@@ -210,3 +217,4 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 ### **7. Conclusion**
 
 This Partner Side module is critical to the success of the marketplace, ensuring a smooth experience for partners while maintaining trust and transparency. With detailed features, efficient workflows, and robust risk management, the platform is set to provide a seamless ecosystem for all stakeholders.
+
