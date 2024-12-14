@@ -77,6 +77,9 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 - **Output:**
   - Save ad space details in the database.
   - Notify the admin for review and approval.
+  - avalibility (date )
+  - desable (toggle)
+  - available (toggle)
 
 ##### **3.2.2 Admin Approval**
 
