@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 
@@ -26,7 +26,6 @@ export function SignUpForm({
   const [error, setError] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*\d)[A-Za-z\d]{5,}$/;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,10 +37,8 @@ export function SignUpForm({
     }
 
     // Password validation
-    if (!passwordRegex.test(password)) {
-      setError(
-        "Password must be at least 8 characters long and contain at least one letter and one number",
-      );
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long");
       return;
     }
 
@@ -51,10 +48,10 @@ export function SignUpForm({
       return;
     }
 
-    // Clear error and redirect to "document-form"
+    // Clear error and redirect to "multi-step-form"
     setError("");
     console.log("Form submitted successfully");
-    router.push("/login"); // Redirect to the document form page
+    router.push("/multi-step-form"); // Redirect to the multi-step form page
   };
 
   return (
