@@ -51,7 +51,7 @@ export function SignUpForm({
     // Clear error and redirect to "multi-step-form"
     setError("");
     console.log("Form submitted successfully");
-    router.push("/multi-step-form"); // Redirect to the multi-step form page
+    router.push("/form"); // Redirect to the multi-step form page
   };
 
   return (
