@@ -27,7 +27,7 @@ export function LoginForm({
     e.preventDefault();
     if (email === "admin@admin.com" && password === "admin@123") {
       localStorage.setItem("isAuthenticated", "true");
-      router.push("/dashboard"); // Redirect to dashboard on successful login
+      router.push("/dashboard");
     } else {
       setError("Invalid email or password");
       localStorage.setItem("isAuthenticated", "false");
