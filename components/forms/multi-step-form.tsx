@@ -11,14 +11,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import StepOne from "./step-one";
 import StepTwo from "./step-two";
 import StepThree from "./step-three";
 import StepFour from "./step-four";
 import { useSearchParams } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 // Validation schemas
 const individualSchema = z.object({
