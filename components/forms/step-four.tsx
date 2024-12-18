@@ -95,7 +95,7 @@ export default function StepFour({ userType }: { userType: string }) {
         <>
           {/* Authorized Person's Name */}
           <div className="space-y-2">
-            <Label htmlFor="authorizedName">Authorized Person's Name</Label>
+            <Label htmlFor="authorizedName">Authorized Persons Name</Label>
             <Input id="authorizedName" {...register("authorizedName")} />
             {errors.authorizedName && (
               <p className="text-sm text-red-500">

@@ -48,6 +48,11 @@ const companySchema = z.object({
   authorizedEmail: z.string().email("Invalid email").optional(),
 });
 
+// Define FormData type based on the schemas
+type IndividualFormData = z.infer<typeof individualSchema>;
+type CompanyFormData = z.infer<typeof companySchema>;
+type FormData = IndividualFormData | CompanyFormData;
+
 export default function MultiStepForm() {
   const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
@@ -60,7 +65,8 @@ export default function MultiStepForm() {
       ? ["Details", "Address", "Documentation", "Other"]
       : ["Number", "Documents", "Address", "Handler Details"];
 
-  const methods = useForm({
+  // Initialize react-hook-form with FormData type
+  const methods = useForm<FormData>({
     resolver: zodResolver(
       userType === "individual" ? individualSchema : companySchema,
     ),
@@ -90,11 +96,11 @@ export default function MultiStepForm() {
                   "authorizedEmail",
                 ];
 
-    const isValid = await methods.trigger(currentFields);
+    const isValid = await methods.trigger(currentFields as (keyof FormData)[]);
 
     if (!isValid) {
       const errors = currentFields
-        .map((field) => methods.formState.errors[field])
+        .map((field) => methods.formState.errors[field as keyof FormData])
         .filter((error) => error);
 
       errors.forEach((error) => {
@@ -124,7 +130,8 @@ export default function MultiStepForm() {
     }
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
+    console.log("Form submission data:", data);
     const isValid = await validateCurrentStep();
 
     if (isValid && step === 4) {

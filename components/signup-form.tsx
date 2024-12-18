@@ -27,13 +27,9 @@ export function SignUpForm({
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Clear error and redirect to the appropriate multi-step form
-    setError("");
 
     if (isCompany) {
       console.log("Company Registration:", {
