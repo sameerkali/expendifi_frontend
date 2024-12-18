@@ -1,84 +1,63 @@
 import { useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 
-export default function StepTwo() {
+export default function StepTwo({ userType }: { userType: string }) {
   const {
     register,
     formState: { errors },
-    setValue,
-    watch,
   } = useFormContext();
 
   return (
     <div className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="dob">Date of Birth</Label>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-full justify-start text-left font-normal",
-                !watch("dob") && "text-muted-foreground",
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {watch("dob") ? (
-                format(watch("dob"), "PPP")
-              ) : (
-                <span>Pick a date</span>
-              )}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar
-              mode="single"
-              selected={watch("dob")}
-              onSelect={(date) => setValue("dob", date)}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
-        {errors.dob && (
-          <p className="text-sm text-red-500">{errors.dob.message as string}</p>
-        )}
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="gender">Gender</Label>
-        <Select onValueChange={(value) => setValue("gender", value)}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select gender" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="male">Male</SelectItem>
-            <SelectItem value="female">Female</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
-        {errors.gender && (
-          <p className="text-sm text-red-500">
-            {errors.gender.message as string}
-          </p>
-        )}
-      </div>
+      {userType === "individual" && (
+        <>
+          <div>
+            <Label htmlFor="street">Street</Label>
+            <Input id="street" {...register("street")} />
+            {errors.street && (
+              <p className="text-red-500">{errors.street.message as string}</p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="city">City</Label>
+            <Input id="city" {...register("city")} />
+            {errors.city && (
+              <p className="text-red-500">{errors.city.message as string}</p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="state">State</Label>
+            <Input id="state" {...register("state")} />
+          </div>
+          <div>
+            <Label htmlFor="postalCode">Postal Code</Label>
+            <Input id="postalCode" {...register("postalCode")} />
+          </div>
+        </>
+      )}
+      {userType === "company" && (
+        <>
+          <div>
+            <Label htmlFor="gstNumber">GST Number</Label>
+            <Input id="gstNumber" {...register("gstNumber")} />
+            {errors.gstNumber && (
+              <p className="text-red-500">
+                {errors.gstNumber.message as string}
+              </p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="panNumber">PAN Number</Label>
+            <Input id="panNumber" {...register("panNumber")} />
+            {errors.panNumber && (
+              <p className="text-red-500">
+                {errors.panNumber.message as string}
+              </p>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
