@@ -24,20 +24,37 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 
 #### **3.1 Partner Onboarding**
 
-##### **3.1.1 Registration Process**
+##### **3.1.1 Individual Registration**
 
 - **Input Fields:**
-  - Name
-  - Email
-  - Password
-  - Location
-  - Contact Number (Optional)
-  - Date of Birth (DOB)
-- **Document Upload:**
-  - PAN Card
-- **Output:**
-  - Store partner details securely in the database.
-  - Assign a unique Partner ID upon successful registration.
+Name
+Email
+Password
+Phone Number
+Date of Birth
+Complete Address (Street, City, State, Postal Code)
+PAN Number (and document upload)
+Aadhaar Number (Optional)
+Gender (Optional)
+
+##### **3.1.1.1 Registration Company**
+
+- **Input Fields:**
+Email
+Password
+Phone Number
+Registered Address (Street, City, State, Postal Code)
+GSTIN Number
+PAN Number (and document upload)
+CIN (Optional)
+Authorized Person's Name
+Authorized Person's Designation
+Authorized Person's Phone Number
+Authorized Person's Email
+Bank Details (Mandatory before payouts)
+Website URL (Optional)
+Branch Address(es) (Optional)
+
 
 ##### **3.1.2 Document Verification**
 
