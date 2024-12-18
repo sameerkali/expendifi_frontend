@@ -24,36 +24,67 @@ The Partner Side module is designed to manage partners who provide ad spaces for
 
 #### **3.1 Partner Onboarding**
 
-##### **3.1.1 Individual Registration**
+### **Individual Registration**
 
+#### **Step 1: Basic Information**
 - **Input Fields:**
-Name
-Email
-Password
-Phone Number
-Date of Birth
-Complete Address (Street, City, State, Postal Code)
-PAN Number (and document upload)
-Aadhaar Number (Optional)
-Gender (Optional)
+  - `Name`
+  - `Email`
+  - `Password`
+  - `Phone Number`
 
-##### **3.1.1.1 Registration Company**
-
+#### **Step 2: Address Details**
 - **Input Fields:**
-Email
-Password
-Phone Number
-Registered Address (Street, City, State, Postal Code)
-GSTIN Number
-PAN Number (and document upload)
-CIN (Optional)
-Authorized Person's Name
-Authorized Person's Designation
-Authorized Person's Phone Number
-Authorized Person's Email
-Bank Details (Mandatory before payouts)
-Website URL (Optional)
-Branch Address(es) (Optional)
+  - `Street`
+  - `City`
+  - `State`
+  - `Postal Code`
+
+#### **Step 3: Identification**
+- **Input Fields:**
+  - `PAN Number` (Upload Document)
+  - `Aadhaar Number` *(Optional)*
+
+#### **Step 4: Additional Information**
+- **Input Fields:**
+  - `Date of Birth`
+  - `Gender` *(Optional)*
+
+
+---
+
+### **Company Registration**
+
+#### **Step 1: Company Details**
+- **Input Fields:**
+  - `Company Name`
+  - `Email`
+  - `Password`
+  - `Phone Number` *(Optional)*
+
+#### **Step 2: Business Information**
+- **Input Fields:**
+  - `GSTIN Number`
+  - `PAN Number` (Upload Document)
+  - `Website URL` *(Optional)*
+
+#### **Step 3: Address Details**
+- **Input Fields:**
+  - **Registered Address**:
+    - `Street`
+    - `City`
+    - `State`
+    - `Postal Code`
+  - **Branch Address(es)** *(Optional)*
+
+#### **Step 4: Authorized Person Details**
+- **Input Fields:**
+  - `Authorized Person's Name`
+  - `Designation`
+  - `Phone Number`
+  - `Email`
+
+
 
 
 ##### **3.1.2 Document Verification**
