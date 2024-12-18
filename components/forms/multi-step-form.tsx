@@ -36,19 +36,32 @@ type FormData = z.infer<typeof formSchema>;
 export default function MultiStepForm() {
   const router = useRouter();
   const [step, setStep] = useState(1);
-  const methods = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    mode: "onChange",
-  });
   const { toast } = useToast();
 
+  const methods = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    mode: "onSubmit", // Validate only on explicit submission
+  });
+
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    localStorage.setItem("isAuthenticated", "true");
-    router.push("/dashboard");
-    toast({
-      title: "Form submitted successfully",
-      description: "Your information has been received.",
+    methods.trigger().then((isValid) => {
+      if (isValid) {
+        console.log(data);
+        localStorage.setItem("isAuthenticated", "true");
+        router.push("/dashboard");
+        toast({
+          title: "Form submitted successfully",
+          description: "Your information has been received.",
+        });
+      } else {
+        Object.entries(methods.formState.errors).forEach(([field, error]) => {
+          toast({
+            title: "Validation Error",
+            description: `${field}: ${(error as any).message}`,
+            variant: "destructive",
+          });
+        });
+      }
     });
   };
 
@@ -59,7 +72,7 @@ export default function MultiStepForm() {
         ? ["name", "companyName"]
         : step === 2
           ? ["dob", "gender"]
-          : [];
+          : ["panNumber", "gstNumber"];
 
     methods.trigger(fieldsToValidate).then((isValid) => {
       if (isValid) {
@@ -69,11 +82,15 @@ export default function MultiStepForm() {
           description: `Moving to step ${step + 1}`,
         });
       } else {
-        // Show error toast if validation fails
-        toast({
-          title: "Validation Error",
-          description: "Please fill in all required fields correctly.",
-          variant: "destructive",
+        fieldsToValidate.forEach((field) => {
+          const error = methods.formState.errors[field];
+          if (error) {
+            toast({
+              title: "Validation Error",
+              description: `${field}: ${error.message}`,
+              variant: "destructive",
+            });
+          }
         });
       }
     });
@@ -94,19 +111,12 @@ export default function MultiStepForm() {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Card className="w-[350px]">
           <CardHeader>
-            <CardTitle>Multi-Step Form</CardTitle>
+            <CardTitle>Complete your profile</CardTitle>
           </CardHeader>
           <CardContent>
             {step === 1 && <StepOne />}
             {step === 2 && <StepTwo />}
             {step === 3 && <StepThree />}
-            <div className="mt-4">
-              {Object.entries(methods.formState.errors).map(([key, error]) => (
-                <p key={key} className="text-sm text-red-500">
-                  {error.message as string}
-                </p>
-              ))}
-            </div>
           </CardContent>
           <CardFooter className="flex justify-between">
             {step > 1 && (
