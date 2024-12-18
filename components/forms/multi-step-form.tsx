@@ -4,20 +4,21 @@ import { ReactNode, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "../ui/card";
 import { useToast } from "@/hooks/use-toast";
 import StepOne from "./step-one";
 import StepTwo from "./step-two";
 import StepThree from "./step-three";
 import StepFour from "./step-four";
 import { useSearchParams } from "next/navigation";
+import { Button } from "../ui/button";
 
 // Validation schemas
 const individualSchema = z.object({

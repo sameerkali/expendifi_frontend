@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Input } from "../ui/input";
 
 export default function StepOne({ userType }: { userType: string }) {
   const {
